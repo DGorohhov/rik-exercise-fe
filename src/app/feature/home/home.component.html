@@ -1,0 +1,39 @@
+<div fxLayoutAlign="space-between center"
+     fxLayoutGap="20px"
+     fxLayout="column">
+
+  <div fxLayoutAlign="space-between center"
+       fxLayout="row">
+    <mat-card id="rik-home-top-container">
+      <div id="rik-home-text-container"
+           fxLayoutAlign="center center"
+           fxFlex="50">
+        <div>
+          Sed nec elit vestibulum, <b>tincidunt orci</b> et, sagittis ex.
+          Vestibulum rutrum <b>neque suscipit</b> ante mattis maximus,
+          Nulla non sapien <b>viverra, lobortis lorem non</b>, accumsan metus.
+        </div>
+      </div>
+      <div>
+        <div fxLayoutAlign="center center">
+          <img fxFill src="../../../assets/images/pilt.jpg"
+               alt="VIEW IMAGE">
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <div id="events-container"
+       fxLayoutGap="15px"
+       fxLayout="row wrap">
+    <rik-event-preview fxFlex="calc(50% - 25px)"
+                       [events]=events
+                       [isEndedEvents]=false
+                       [titleText]="upcomingEventsTitle"></rik-event-preview>
+    <rik-event-preview fxFlex="calc(50% - 25px)"
+                       [events]=endedEvents
+                       [isEndedEvents]=true
+                       [titleText]="endedEventsTitle"></rik-event-preview>
+  </div>
+
+</div>

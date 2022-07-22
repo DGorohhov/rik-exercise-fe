@@ -1,0 +1,61 @@
+<div fxFlex
+     fxLayout="column">
+  <div class="event-header-container"
+       fxLayoutAlign="center center">
+    {{titleText}}
+  </div>
+  <div class="event-data-container"
+       fxFlex
+       fxLayoutGap="60px"
+       fxLayout="column">
+    <div fxLayoutGap="5px"
+         fxLayout="column">
+      <div *ngFor="let event of events; let i = index"
+           fxLayoutGap="5px"
+           fxLayout="row">
+        <div fxLayout="row"
+             fxFlex="60"
+             fxLayoutGap="10px">
+          <div fxLayoutAlign="start center">
+            {{i + 1}}.
+          </div>
+          <div fxFlex
+               fxLayoutAlign="start center">
+            {{event.name}}
+          </div>
+        </div>
+        <div fxFlex="15" fxLayoutAlign="center center">
+          {{event.date | date: 'dd.MM.yyyy'}}
+        </div>
+        <div fxFlex="25"
+             fxLayout="row"
+             class="rik-event-actions-container"
+             fxLayoutAlign="end center">
+          <button mat-flat-button color="accent">
+            OSAVÕTJAD
+          </button>
+          <button *ngIf="!isEndedEvents"
+                  mat-icon-button>
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isEndedEvents"
+         fxLayoutAlign="start center">
+      <button mat-flat-button
+              color="accent">
+        <div fxLayout="row"
+             fxLayoutGap="5px"
+             fxLayoutAlign="center center">
+          <mat-icon>
+            add
+          </mat-icon>
+          <div>
+            LISA ÜRITUS
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
