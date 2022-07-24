@@ -2,9 +2,11 @@
      fxLayoutGap="20px"
      fxLayout="column">
 
-  <div fxLayoutAlign="space-between center"
+  <div id="rik-home-top-container"
+       fxLayoutAlign="space-between center"
        fxLayout="row">
-    <mat-card id="rik-home-top-container">
+    <div fxFlex="grow"
+         fxLayout="row wrap">
       <div id="rik-home-text-container"
            fxLayoutAlign="center center"
            fxFlex="50">
@@ -14,13 +16,10 @@
           Nulla non sapien <b>viverra, lobortis lorem non</b>, accumsan metus.
         </div>
       </div>
-      <div>
-        <div fxLayoutAlign="center center">
-          <img fxFill src="../../../assets/images/pilt.jpg"
-               alt="VIEW IMAGE">
-        </div>
+      <div fxFlex="50"
+           id="rik-home-photo-container">
       </div>
-    </mat-card>
+    </div>
   </div>
 
   <div id="events-container"

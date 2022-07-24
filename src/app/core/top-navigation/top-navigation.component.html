@@ -15,12 +15,14 @@
          fxLayoutAlign="space-around stretch">
       <button mat-flat-button
               routerLinkActive="rik-top-navigation-active-link"
-              routerLink="/">
+              routerLink="/"
+              [routerLinkActiveOptions]="{exact: true}">
         Avaleht
       </button>
       <button mat-flat-button
               routerLinkActive="rik-top-navigation-active-link"
-              routerLink="/event">
+              routerLink="/event/new"
+              [routerLinkActiveOptions]="{exact: true}">
         Ürituse lisamine
       </button>
     </div>

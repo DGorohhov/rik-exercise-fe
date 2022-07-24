@@ -12,12 +12,14 @@ import {SharedModule} from './shared/shared.module';
 import {AppComponent} from './app.component';
 import {EventPreviewComponent} from './feature/home/event-preview/event-preview.component';
 import {HomeComponent} from './feature/home/home.component';
+import { EventComponent } from './feature/event/event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    EventPreviewComponent
+    EventPreviewComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

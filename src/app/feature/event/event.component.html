@@ -1,0 +1,111 @@
+<div fxFlex
+     id="rik-event-data-container"
+     fxLayoutAlign="start center"
+     fxLayout="column">
+  <div fxFlex
+       id="rik-event-header"
+       fxLayout="row wrap">
+    <div fxFlex="30"
+         fxLayoutAlign="center center"
+         id="rik-event-header-title">
+      <h1>Ürituse lisamine</h1>
+    </div>
+    <div fxFlex="70"
+         id="rik-event-header-photo">
+    </div>
+  </div>
+  <div fxFlex
+       style="width: 35%"
+       fxLayoutGap="10px"
+       fxLayoutAlign="space-between start"
+       fxLayout="column">
+    <div>
+      <h2 class="rik-event-subtitle">Ürituse lisamine</h2>
+    </div>
+    <div style="width: 100%">
+      <form #newEventForm="ngForm"
+            fxFlex
+            id="rik-new-event-form">
+        <div fxLayoutAlign="space-between start"
+             fxFlex
+             fxLayout="column">
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline"
+                          color="primary">
+            <mat-label>
+              Ürituse nimi
+            </mat-label>
+            <input matInput
+                   type="text"
+                   required
+                   ngModel
+                   id="eventName"
+                   name="eventName"
+                   #eventNameCtrl="ngModel"
+                   [(ngModel)]="newEvent.name">
+          </mat-form-field>
+          <mat-form-field fxFlexAlign="stretch" appearance="outline">
+            <input matInput
+                   [ngxMatDatetimePicker]="picker"
+                   [(ngModel)]="newEvent.date"
+                   required
+                   id="eventDate"
+                   name="eventDate"
+                   placeholder="pp.kk.aaaa hh:mm">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="$any(picker)">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker
+                                     [showSpinners]="showSpinners"
+                                     [showSeconds]="showSeconds"
+                                     [stepHour]="stepHour"
+                                     [stepMinute]="stepMinute"
+                                     [stepSecond]="stepSecond"
+                                     [touchUi]="touchUi"
+                                     [color]="color">
+            </ngx-mat-datetime-picker>
+          </mat-form-field>
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline"
+                          color="primary">
+            <mat-label>
+              Koht
+            </mat-label>
+            <input matInput
+                   type="text"
+                   required
+                   ngModel
+                   id="eventLocation"
+                   name="eventLocation"
+                   #eventLocationCtrl="ngModel"
+                   [(ngModel)]="newEvent.location">
+          </mat-form-field>
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline"
+                          color="primary">
+            <mat-label>
+              Lisainfo
+            </mat-label>
+            <textarea matInput
+                      ngModel
+                      id="eventAdditionalInfo"
+                      name="eventAdditionalInfo"
+                      #eventAdditionalInfoCtrl="ngModel"
+                      [(ngModel)]="newEvent.additionalInfo"></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div fxLayoutAlign="start center"
+         fxLayoutGap="15px">
+      <button mat-raised-button>
+        Tagasi
+      </button>
+      <button mat-raised-button
+              [disabled]="newEventForm.invalid"
+              color="primary">
+        Lisa
+      </button>
+    </div>
+  </div>
+</div>
