@@ -45,7 +45,7 @@ export class EventParticipantsComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
   public updateFormValidityState(isValid: boolean): void {

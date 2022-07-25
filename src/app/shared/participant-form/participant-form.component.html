@@ -3,7 +3,8 @@
   <div fxLayoutAlign="space-between start"
        fxFlex
        fxLayout="column">
-    <mat-radio-group aria-label="Vali osavõtja tüüp"
+    <mat-radio-group *ngIf="allowTypeSelection"
+                     aria-label="Vali osavõtja tüüp"
                      color="primary"
                      id="rik-participant-type-radio-group"
                      fxFlexAlign="stretch"

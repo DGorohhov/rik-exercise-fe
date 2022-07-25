@@ -13,13 +13,15 @@ import {AppComponent} from './app.component';
 import {EventPreviewComponent} from './feature/home/event-preview/event-preview.component';
 import {HomeComponent} from './feature/home/home.component';
 import { EventComponent } from './feature/event/event.component';
+import { ParticipantComponent } from './feature/participant/participant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EventPreviewComponent,
-    EventComponent
+    EventComponent,
+    ParticipantComponent
   ],
   imports: [
     BrowserModule,

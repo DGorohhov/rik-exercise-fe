@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'event',
     loadChildren: () => import('./feature/event/event.module').then(m => m.EventModule),
+  },
+  {
+    path: 'participant',
+    loadChildren: () => import('./feature/participant/participant.module').then(m => m.ParticipantModule),
   }
 ];
 

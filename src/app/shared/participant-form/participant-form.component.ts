@@ -2,9 +2,9 @@ import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-import {CivilianDto} from '../../../core/model/civilian-dto.model';
-import {CompanyDto} from '../../../core/model/company-dto.model';
-import {PaymentType} from '../../../core/model/payment-type.model';
+import {CivilianDto} from '../../core/model/civilian-dto.model';
+import {CompanyDto} from '../../core/model/company-dto.model';
+import {PaymentType} from '../../core/model/payment-type.model';
 
 @Component({
   selector: 'rik-participant-form',
@@ -16,6 +16,7 @@ export class ParticipantFormComponent implements AfterViewInit, OnDestroy {
   @ViewChild('participantForm', {static: true}) public participantForm!: NgForm;
 
   @Input() allowTypeSelection = true;
+  @Input() participantType = 'CIVILIAN';
   @Input() civilianData = {} as CivilianDto;
   @Input() companyData = {} as CompanyDto;
 
@@ -25,7 +26,6 @@ export class ParticipantFormComponent implements AfterViewInit, OnDestroy {
 
   public participantFormSubscription!: Subscription;
 
-  public participantType = 'CIVILIAN';
   public paymentTypes = [
     {
       key: 'CASH',

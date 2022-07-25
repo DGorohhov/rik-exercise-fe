@@ -76,6 +76,7 @@
                    class="rik-event-actions-container"
                    fxLayoutAlign="end center">
                 <button mat-flat-button
+                        [routerLink]="['/participant', participant.type, participant.extId]"
                         color="accent">
                   Vaata
                 </button>
@@ -104,7 +105,8 @@
       </div>
       <div fxLayoutAlign="start center"
            fxLayoutGap="15px">
-        <button mat-raised-button>
+        <button mat-raised-button
+                routerLink="/">
           Tagasi
         </button>
         <button mat-raised-button

@@ -31,7 +31,9 @@
              fxLayout="row"
              class="rik-event-actions-container"
              fxLayoutAlign="end center">
-          <button mat-flat-button color="accent">
+          <button [routerLink]="['event', event.extId]"
+                  mat-flat-button
+                  color="accent">
             OSAVÕTJAD
           </button>
           <button *ngIf="!isEndedEvents"
