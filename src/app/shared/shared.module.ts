@@ -6,10 +6,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../material/material.module';
 
 import {ParticipantFormComponent} from './participant-form/participant-form.component';
+import {ErrorSnackbarComponent} from './error-snackbar/error-snackbar.component';
+import {GenericErrorComponent} from './generic-error/generic-error.component';
 
 @NgModule({
   declarations: [
-    ParticipantFormComponent
+    ParticipantFormComponent,
+    ErrorSnackbarComponent,
+    GenericErrorComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,8 @@ import {ParticipantFormComponent} from './participant-form/participant-form.comp
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-    ParticipantFormComponent
+    ParticipantFormComponent,
+    GenericErrorComponent
   ]
 })
 export class SharedModule { }

@@ -10,7 +10,7 @@
        fxLayout="column">
     <div fxLayoutGap="5px"
          fxLayout="column">
-      <div *ngFor="let event of events; let i = index"
+      <div *ngFor="let event of events | async; let i = index"
            fxLayoutGap="5px"
            fxLayout="row">
         <div fxLayout="row"
@@ -37,6 +37,7 @@
             OSAVÕTJAD
           </button>
           <button *ngIf="!isEndedEvents"
+                  (click)="deleteEvent(event.extId)"
                   mat-icon-button>
             <mat-icon>close</mat-icon>
           </button>
@@ -46,6 +47,7 @@
     <div *ngIf="!isEndedEvents"
          fxLayoutAlign="start center">
       <button mat-flat-button
+              routerLink="event/new"
               color="accent">
         <div fxLayout="row"
              fxLayoutGap="5px"

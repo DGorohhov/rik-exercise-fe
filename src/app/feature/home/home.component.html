@@ -26,6 +26,7 @@
        fxLayoutGap="15px"
        fxLayout="row wrap">
     <rik-event-preview fxFlex="calc(50% - 25px)"
+                       (fetchEvents)="fetchEventsEvent()"
                        [events]=events
                        [isEndedEvents]=false
                        [titleText]="upcomingEventsTitle"></rik-event-preview>

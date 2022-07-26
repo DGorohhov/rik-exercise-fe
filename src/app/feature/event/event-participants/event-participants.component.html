@@ -16,9 +16,8 @@
   </div>
   <div id="rik-event-info-container"
        fxLayoutGap="20px"
-       fxLayout="column"
-       fxFlex>
-    <div fxFlex
+       fxLayout="column">
+    <div fxFlex="60"
          fxLayoutGap="20px"
          fxLayoutAlign="space-between start"
          fxLayout="column">
@@ -29,7 +28,8 @@
            fxLayoutGap="40px"
            fxLayoutAlign="space-between start"
            fxLayout="row">
-        <div fxLayout="column" fxLayoutGap="25px">
+        <div fxLayout="column"
+             fxLayoutGap="25px">
           <div>
             <span>Ürituse nimi:</span>
           </div>
@@ -43,7 +43,8 @@
             <span>Osavõtjad:</span>
           </div>
         </div>
-        <div fxLayout="column" fxLayoutGap="25px">
+        <div fxLayout="column"
+             fxLayoutGap="25px">
           <div>
             {{event.name}}
           </div>
@@ -68,10 +69,12 @@
                   {{participant.name}}
                 </div>
               </div>
-              <div fxFlex fxLayoutAlign="start center">
+              <div fxFlex
+                   fxLayoutAlign="start center">
                 {{participant.personalIdentificationNumber}}
               </div>
               <div fxFlex="25"
+                   *ngIf="!event.isEndedEvent"
                    fxLayout="row"
                    class="rik-event-actions-container"
                    fxLayoutAlign="end center">
@@ -81,6 +84,7 @@
                   Vaata
                 </button>
                 <button mat-flat-button
+                        (click)="removeParticipant(participant.type, participant.extId)"
                         color="accent">
                   Kusututa
                 </button>
@@ -91,6 +95,7 @@
       </div>
     </div>
     <div fxFlexAlign="stretch"
+         *ngIf="!event.isEndedEvent"
          fxLayoutGap="20px"
          fxLayoutAlign="space-between start"
          fxLayout="column">
@@ -100,6 +105,7 @@
       <div fxFlexAlign="stretch">
         <rik-participant-form [allowTypeSelection]="true"
                               (isFormValid)="updateFormValidityState($event)"
+                              (participantTypeOutput)="updateParticipantType($event)"
                               (civilianDataOutput)="updateCivilianData($event)"
                               (companyDataOutput)="updateCompanyData($event)"></rik-participant-form>
       </div>
@@ -110,6 +116,7 @@
           Tagasi
         </button>
         <button mat-raised-button
+                (click)="createParticipant()"
                 [disabled]="isFormValid"
                 color="primary">
           Salvesta

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {map, Observable} from 'rxjs';
 
 import {EventPreviewVm} from '../../core/model/event-preview-vm.model';
+import {EventListService} from '../../core/service/event-list.service';
 
 @Component({
   selector: 'app-home',
@@ -9,63 +11,34 @@ import {EventPreviewVm} from '../../core/model/event-preview-vm.model';
 })
 export class HomeComponent implements OnInit {
 
-  public events = [
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Aenean commodo',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Fusce ex dulm finibus eu luctus vel',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Nunc lobortis metus eu massa viverra ultri iplacerat nibh',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Integer nec nulla vitae',
-      date: new Date()
-    } as EventPreviewVm,
-  ] as EventPreviewVm[];
-
-  public endedEvents = [
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Aenean commodo',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Fusce ex dulm finibus eu luctus vel',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Nunc lobortis metus eu massa viverra ultri iplacerat nibh',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Integer nec nulla vitae',
-      date: new Date()
-    } as EventPreviewVm,
-    {
-      extId: '0449f445-ff87-40bd-8c2f-1c5b70dba8d9',
-      name: 'Praesent molestie dapibus lorem',
-      date: new Date()
-    } as EventPreviewVm
-  ] as EventPreviewVm[];
+  public events = new Observable<EventPreviewVm[]>();
+  public endedEvents = new Observable<EventPreviewVm[]>();
 
   public upcomingEventsTitle = 'Tulevased üritused'; // FIXME: MOVE TO CONSTANTS???
   public endedEventsTitle = 'Toimunud üritused';
 
-  constructor() { }
+  constructor(
+    private readonly eventListService: EventListService
+  ) { }
 
   public ngOnInit(): void {
+    this.fetchAllEvents()
+  }
+
+  public fetchEventsEvent(): void {
+    this.fetchAllEvents();
+  }
+
+  private fetchAllEvents(): void {
+    this.events = this.eventListService.upcomingEvents()
+      .pipe(
+        map(e => e.items)
+      );
+
+    this.endedEvents = this.eventListService.endedEvents()
+      .pipe(
+        map(e => e.items)
+      );
   }
 
 }

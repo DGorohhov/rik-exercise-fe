@@ -1,14 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
+import {Router} from '@angular/router';
 
 import {EventDto} from '../../core/model/event-dto.model';
+
+import {EventService} from '../../core/service/event.service';
+import {PopupService} from '../../core/service/popup.service';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.scss']
 })
-export class EventComponent implements OnInit {
+export class EventComponent {
 
   public newEvent = {} as EventDto;
 
@@ -19,11 +23,20 @@ export class EventComponent implements OnInit {
   public stepHour = 1;
   public stepMinute = 1;
   public stepSecond = 1;
+  public minDate = new Date();
   public color: ThemePalette = 'primary';
 
-  constructor() { }
+  constructor(
+    private readonly eventService: EventService,
+    private readonly popupService: PopupService,
+    private readonly router: Router,
+  ) {}
 
-  ngOnInit(): void {
+  public createEvent(dto: EventDto): void {
+    this.eventService.createEvent(dto).subscribe((e) => {
+      this.router.navigate(['/']);
+      this.popupService.throwSuccessPopup('Üritus lisatud!');
+    })
   }
 
 }
