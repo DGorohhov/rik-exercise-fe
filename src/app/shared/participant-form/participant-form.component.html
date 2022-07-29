@@ -1,0 +1,217 @@
+<form #participantForm="ngForm"
+      fxFlex>
+  <div fxLayoutAlign="space-between start"
+       fxFlex
+       fxLayout="column">
+    <mat-radio-group *ngIf="allowTypeSelection"
+                     aria-label="Vali osavõtja tüüp"
+                     color="primary"
+                     id="rik-participant-type-radio-group"
+                     fxFlexAlign="stretch"
+                     fxLayoutAlign="center center"
+                     ngModel
+                     name="participantType"
+                     [(ngModel)]="participantType"
+                     fxLayoutGap="40px">
+      <mat-radio-button [value]="participantTypes.CIVILIAN">Eraisik</mat-radio-button>
+      <mat-radio-button [value]="participantTypes.COMPANY">Ettevõte</mat-radio-button>
+    </mat-radio-group>
+    <div *ngIf="participantType === 'CIVILIAN'; else companyFields"
+         fxLayoutAlign="space-between start"
+         fxLayoutGap="10px"
+         fxFlexAlign="stretch"
+         fxLayout="column">
+      <mat-form-field fxFlexAlign="stretch"
+                      appearance="outline"
+                      color="primary">
+        <mat-label>
+          Eesnimi
+        </mat-label>
+        <input matInput
+               type="text"
+               required
+               ngModel
+               id="civilianFirstName"
+               name="civilianFirstName"
+               #civilianFirstNameCtrl="ngModel"
+               [(ngModel)]="civilianData.firstName">
+        <mat-error>
+          <rik-generic-error [control]="civilianFirstNameCtrl"></rik-generic-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlexAlign="stretch"
+                      appearance="outline"
+                      color="primary">
+        <mat-label>
+          Perenimi
+        </mat-label>
+        <input matInput
+               type="text"
+               required
+               ngModel
+               id="civilianLastName"
+               name="civilianLastName"
+               #civilianLastNameCtrl="ngModel"
+               [(ngModel)]="civilianData.lastName">
+        <mat-error>
+          <rik-generic-error [control]="civilianLastNameCtrl"></rik-generic-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlexAlign="stretch"
+                      appearance="outline"
+                      color="primary">
+        <mat-label>
+          Isikukood
+        </mat-label>
+        <input matInput
+               type="text"
+               minlength="11"
+               maxlength="11"
+               required
+               ngModel
+               id="civilianPersonalIdentityNumber"
+               name="civilianPersonalIdentityNumber"
+               #civilianPersonalIdentityNumberCtrl="ngModel"
+               [(ngModel)]="civilianData.personalIdentityNumber">
+        <mat-error>
+          <rik-generic-error [control]="civilianPersonalIdentityNumberCtrl"></rik-generic-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlexAlign="stretch"
+                      appearance="outline"
+                      color="primary">
+        <mat-label>Maksmisviis</mat-label>
+        <mat-select required
+                    ngModel
+                    id="civilianPaymentType"
+                    name="civilianPaymentType"
+                    #civilianPaymentTypeCtrl="ngModel"
+                    [(ngModel)]="civilianData.paymentType">
+          <mat-option *ngFor="let paymentType of paymentTypes"
+                      [value]="paymentType.key">
+            {{paymentType.value}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          <rik-generic-error [control]="civilianPaymentTypeCtrl"></rik-generic-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlexAlign="stretch"
+                      appearance="outline"
+                      color="primary">
+        <mat-label>
+          Lisainfo
+        </mat-label>
+        <textarea matInput
+                  ngModel
+                  maxlength="1500"
+                  id="civilianAdditionalInfo"
+                  name="civilianAdditionalInfo"
+                  #civilianAdditionalInfoCtrl="ngModel"
+                  [(ngModel)]="civilianData.additionalInfo"></textarea>
+        <mat-error>
+          <rik-generic-error [control]="civilianAdditionalInfoCtrl"></rik-generic-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <ng-template #companyFields>
+      <div fxLayoutAlign="space-between start"
+           fxFlexAlign="stretch"
+           fxLayout="column">
+        <mat-form-field fxFlexAlign="stretch"
+                        appearance="outline"
+                        color="primary">
+          <mat-label>
+            Ettevõtte juriidiline nimi
+          </mat-label>
+          <input matInput
+                 type="text"
+                 required
+                 ngModel
+                 id="companyLegalName"
+                 name="companyLegalName"
+                 #companyLegalNameCtrl="ngModel"
+                 [(ngModel)]="companyData.legalName">
+          <mat-error>
+            <rik-generic-error [control]="companyLegalNameCtrl"></rik-generic-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexAlign="stretch"
+                        appearance="outline"
+                        color="primary">
+          <mat-label>
+            Ettevõtte registrikood
+          </mat-label>
+          <input matInput
+                 type="text"
+                 required
+                 minlength="8"
+                 maxlength="8"
+                 ngModel
+                 id="companyRegisterCode"
+                 name="companyRegisterCode"
+                 #companyRegisterCodeCtrl="ngModel"
+                 [(ngModel)]="companyData.registerCode">
+          <mat-error>
+            <rik-generic-error [control]="companyRegisterCodeCtrl"></rik-generic-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexAlign="stretch"
+                        appearance="outline"
+                        color="primary">
+          <mat-label>
+            Ettevõttest tulevate osavõtjate arv
+          </mat-label>
+          <input matInput
+                 type="number"
+                 min="1"
+                 required
+                 ngModel
+                 id="companyNumberOfParticipants"
+                 name="companyNumberOfParticipants"
+                 #companyNumberOfParticipantsCtrl="ngModel"
+                 [(ngModel)]="companyData.numberOfParticipants">
+          <mat-error>
+            <rik-generic-error [control]="companyNumberOfParticipantsCtrl"></rik-generic-error>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlexAlign="stretch"
+                        appearance="outline"
+                        color="primary">
+          <mat-label>Maksmisviis</mat-label>
+          <mat-select required
+                      ngModel
+                      id="companyPaymentType"
+                      name="companyPaymentType"
+                      #companyPaymentTypeCtrl="ngModel"
+                      [(ngModel)]="companyData.paymentType">
+            <mat-option *ngFor="let paymentType of paymentTypes"
+                        [value]="paymentType.key">
+              {{paymentType.value}}
+            </mat-option>
+            <mat-error>
+              <rik-generic-error [control]="companyPaymentTypeCtrl"></rik-generic-error>
+            </mat-error>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlexAlign="stretch"
+                        appearance="outline"
+                        color="primary">
+          <mat-label>
+            Lisainfo
+          </mat-label>
+          <textarea matInput
+                    ngModel
+                    maxlength="5000"
+                    id="companyAdditionalInfo"
+                    name="companyAdditionalInfo"
+                    #companyAdditionalInfoCtrl="ngModel"
+                    [(ngModel)]="civilianData.additionalInfo"></textarea>
+          <mat-error>
+            <rik-generic-error [control]="companyAdditionalInfoCtrl"></rik-generic-error>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </ng-template>
+  </div>
+</form>

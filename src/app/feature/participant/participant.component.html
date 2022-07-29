@@ -1,0 +1,48 @@
+<div fxFlex
+     id="rik-event-data-container"
+     fxLayoutAlign="start center"
+     fxLayout="column">
+  <div fxFlex
+       id="rik-event-header"
+       fxLayout="row wrap">
+    <div fxFlex="30"
+         fxLayoutAlign="center center"
+         id="rik-event-header-title">
+      <h1>Osavõtja info</h1>
+    </div>
+    <div fxFlex="70"
+         id="rik-event-header-photo">
+    </div>
+  </div>
+  <div fxFlex
+       fxLayoutGap="10px"
+       fxLayoutAlign="space-between start"
+       fxLayout="column"
+       class="rik-data-container">
+    <div>
+      <h2 class="rik-event-subtitle">Osavõtja info</h2>
+    </div>
+    <div class="rik-stretched-container">
+      <rik-participant-form [allowTypeSelection]="false"
+                            [participantType]="participantType"
+                            [civilianData]="civilian"
+                            [companyData]="company"
+                            (isFormValid)="updateFormValidityState($event)"
+                            (civilianDataOutput)="updateCivilianData($event)"
+                            (companyDataOutput)="updateCompanyData($event)"></rik-participant-form>
+    </div>
+    <div fxLayoutAlign="start center"
+         fxLayoutGap="15px">
+      <button mat-raised-button
+              (click)="goBackToEvent()">
+        Tagasi
+      </button>
+      <button mat-raised-button
+              (click)="createParticipant()"
+              [disabled]="isFormValid"
+              color="primary">
+        Salvesta
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+.blue-snackbar {
+  background: var(--primary-color) !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  * {
+    color: white !important;
+  }
+}
+
+.red-snackbar {
+  background: var(--warn-color) !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  * {
+    color: white !important;
+  }
+}
+
+.rik-data-container {
+  width: 35%;
+}
+
+.rik-stretched-container {
+  width: 100%;
+}

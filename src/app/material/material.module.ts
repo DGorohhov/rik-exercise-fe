@@ -1,3 +1,5 @@
+import {NgxMatDatetimePickerModule, NgxMatTimepickerModule} from '@angular-material-components/datetime-picker';
+import {NgxMatMomentModule} from '@angular-material-components/moment-adapter';
 import {NgModule} from '@angular/core';
 
 import {OverlayModule} from '@angular/cdk/overlay';
@@ -68,6 +70,9 @@ import {MatSliderModule} from '@angular/material/slider';
     OverlayModule,
     MatSlideToggleModule,
     MatBadgeModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatMomentModule
   ],
   exports: [
     CdkTableModule,
@@ -103,6 +108,9 @@ import {MatSliderModule} from '@angular/material/slider';
     MatSlideToggleModule,
     MatBadgeModule,
     MatSliderModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatMomentModule
   ],
   providers: [
     MatSnackBar,

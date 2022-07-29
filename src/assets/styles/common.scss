@@ -1,0 +1,23 @@
+#rik-event-header {
+  width: 100%;
+}
+
+#rik-event-header-title {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+#rik-event-header-photo {
+  background-image: url("../images/libled.jpg");
+  background-position: center;
+}
+
+.rik-event-subtitle {
+  color: var(--primary-color);
+}
+
+#rik-event-data-container {
+  background-color: white;
+  padding-bottom: 2%;
+}
+

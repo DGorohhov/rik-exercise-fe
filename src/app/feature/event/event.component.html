@@ -1,0 +1,133 @@
+<div fxFlex
+     id="rik-event-data-container"
+     fxLayoutAlign="start center"
+     fxLayout="column">
+  <div fxFlex
+       id="rik-event-header"
+       fxLayout="row wrap">
+    <div fxFlex="30"
+         fxLayoutAlign="center center"
+         id="rik-event-header-title">
+      <h1>Ürituse lisamine</h1>
+    </div>
+    <div fxFlex="70"
+         id="rik-event-header-photo">
+    </div>
+  </div>
+  <div fxFlex
+       fxLayoutGap="10px"
+       fxLayoutAlign="space-between start"
+       fxLayout="column"
+       class="rik-data-container">
+    <div>
+      <h2 class="rik-event-subtitle">Ürituse lisamine</h2>
+    </div>
+    <div class="rik-stretched-container">
+      <form #newEventForm="ngForm"
+            fxFlex
+            id="rik-new-event-form">
+        <div fxLayoutAlign="space-between start"
+             fxFlex
+             fxLayoutGap="10px"
+             fxLayout="column">
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline"
+                          color="primary">
+            <mat-label>
+              Ürituse nimi
+            </mat-label>
+            <input matInput
+                   type="text"
+                   required
+                   ngModel
+                   id="eventName"
+                   name="eventName"
+                   #eventNameCtrl="ngModel"
+                   [(ngModel)]="newEvent.name">
+            <mat-error>
+              <rik-generic-error [control]="eventNameCtrl"></rik-generic-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline">
+            <mat-label>
+              Toimumisaeg
+            </mat-label>
+            <input matInput
+                   [ngxMatDatetimePicker]="picker"
+                   [(ngModel)]="newEvent.date"
+                   [min]="minDate"
+                   required
+                   id="eventDate"
+                   name="eventDate"
+                   #eventDateCtrl="ngModel"
+                   placeholder="pp.kk.aaaa hh:mm">
+            <mat-datepicker-toggle matSuffix
+                                   [for]="$any(picker)">
+            </mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker
+                                     [showSpinners]="showSpinners"
+                                     [showSeconds]="showSeconds"
+                                     [stepHour]="stepHour"
+                                     [stepMinute]="stepMinute"
+                                     [stepSecond]="stepSecond"
+                                     [touchUi]="touchUi"
+                                     [color]="color">
+            </ngx-mat-datetime-picker>
+            <mat-error *ngIf="eventDateCtrl.hasError('matDatetimePickerMin')">
+              Valitud toimumisaeg ei saa olla minevikus
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline"
+                          color="primary">
+            <mat-label>
+              Koht
+            </mat-label>
+            <input matInput
+                   type="text"
+                   required
+                   ngModel
+                   id="eventLocation"
+                   name="eventLocation"
+                   #eventLocationCtrl="ngModel"
+                   [(ngModel)]="newEvent.location">
+            <mat-error>
+              <rik-generic-error [control]="eventLocationCtrl"></rik-generic-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlexAlign="stretch"
+                          appearance="outline"
+                          color="primary">
+            <mat-label>
+              Lisainfo
+            </mat-label>
+            <textarea matInput
+                      ngModel
+                      maxlength="1000"
+                      id="eventAdditionalInfo"
+                      name="eventAdditionalInfo"
+                      #eventAdditionalInfoCtrl="ngModel"
+                      [(ngModel)]="newEvent.additionalInfo"></textarea>
+            <mat-error>
+              <rik-generic-error [control]="eventAdditionalInfoCtrl"></rik-generic-error>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div fxLayoutAlign="start center"
+         fxLayoutGap="15px">
+      <button mat-raised-button
+              routerLink="/">
+        Tagasi
+      </button>
+      <button mat-raised-button
+              (click)="createEvent(newEvent)"
+              [disabled]="newEventForm.invalid"
+              color="primary">
+        Lisa
+      </button>
+    </div>
+  </div>
+</div>

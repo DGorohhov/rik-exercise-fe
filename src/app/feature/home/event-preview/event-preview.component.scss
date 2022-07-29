@@ -1,0 +1,21 @@
+#events-container {
+  width: 100%;
+}
+
+.event-data-container {
+  width: 100%;
+  padding: 15px 25px;
+  background-color: white;
+}
+
+.event-header-container {
+  color: white;
+  font-size: 20px;
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--primary-color);
+}
+
+.rik-event-actions-container button {
+  font-size: 12px;
+}

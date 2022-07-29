@@ -11,11 +11,18 @@
            alt="logo"/>
     </div>
     <div fxLayout="row"
+         id="rik-navigation-link-button-container"
          fxLayoutAlign="space-around stretch">
-      <button mat-button>
+      <button mat-flat-button
+              routerLinkActive="rik-top-navigation-active-link"
+              routerLink="/"
+              [routerLinkActiveOptions]="{exact: true}">
         Avaleht
       </button>
-      <button mat-button>
+      <button mat-flat-button
+              routerLinkActive="rik-top-navigation-active-link"
+              routerLink="/event/new"
+              [routerLinkActiveOptions]="{exact: true}">
         Ürituse lisamine
       </button>
     </div>

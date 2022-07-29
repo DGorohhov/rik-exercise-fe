@@ -1,0 +1,13 @@
+<div fxLayout="row"
+     fxLayoutAlign="space-between center"
+     id="rik-error-snackbar">
+  <div>
+    {{data.errorMessage}}
+  </div>
+  <button mat-icon-button
+          (click)="snackbar.dismiss()">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</div>

@@ -1,0 +1,127 @@
+<div fxFlex
+     id="rik-event-data-container"
+     fxLayoutAlign="start center"
+     fxLayout="column">
+  <div fxFlex
+       id="rik-event-header"
+       fxLayout="row wrap">
+    <div fxFlex="30"
+         fxLayoutAlign="center center"
+         id="rik-event-header-title">
+      <h1>Osavõtjad</h1>
+    </div>
+    <div fxFlex="70"
+         id="rik-event-header-photo">
+    </div>
+  </div>
+  <div id="rik-event-info-container"
+       fxLayoutGap="20px"
+       fxLayout="column">
+    <div fxFlex="60"
+         fxLayoutGap="20px"
+         fxLayoutAlign="space-between start"
+         fxLayout="column">
+      <div>
+        <h2 class="rik-event-subtitle">Osavõtjad</h2>
+      </div>
+      <div id="rik-event-data"
+           fxLayoutGap="40px"
+           fxLayoutAlign="space-between start"
+           fxLayout="row">
+        <div fxLayout="column"
+             fxLayoutGap="25px">
+          <div>
+            <span>Ürituse nimi:</span>
+          </div>
+          <div>
+            <span>Toimumisaeg:</span>
+          </div>
+          <div>
+            <span>Koht:</span>
+          </div>
+          <div>
+            <span>Osavõtjad:</span>
+          </div>
+        </div>
+        <div fxLayout="column"
+             fxLayoutGap="25px">
+          <div>
+            {{event.name}}
+          </div>
+          <div>
+            {{event.date | date: 'dd.MM.yyyy'}}
+          </div>
+          <div>
+            {{event.location}}
+          </div>
+          <div>
+            <div *ngFor="let participant of event.participants; let i = index"
+                 fxLayoutGap="10px"
+                 fxLayout="row">
+              <div fxLayout="row"
+                   fxFlex
+                   fxLayoutGap="10px">
+                <div fxLayoutAlign="start center">
+                  {{i + 1}}.
+                </div>
+                <div fxFlex
+                     fxLayoutAlign="start center">
+                  {{participant.name}}
+                </div>
+              </div>
+              <div fxFlex
+                   fxLayoutAlign="start center">
+                {{participant.personalIdentificationNumber}}
+              </div>
+              <div fxFlex="25"
+                   *ngIf="!event.isEndedEvent"
+                   fxLayout="row"
+                   class="rik-event-actions-container"
+                   fxLayoutAlign="end center">
+                <button mat-flat-button
+                        [routerLink]="['/participant', participant.type, participant.extId]"
+                        color="accent">
+                  Vaata
+                </button>
+                <button mat-flat-button
+                        (click)="removeParticipant(participant.type, participant.extId)"
+                        color="accent">
+                  Kusututa
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlexAlign="stretch"
+         *ngIf="!event.isEndedEvent"
+         fxLayoutGap="20px"
+         fxLayoutAlign="space-between start"
+         fxLayout="column">
+      <div>
+        <h2 class="rik-event-subtitle">Osavõtjate lisamine</h2>
+      </div>
+      <div fxFlexAlign="stretch">
+        <rik-participant-form [allowTypeSelection]="true"
+                              (isFormValid)="updateFormValidityState($event)"
+                              (participantTypeOutput)="updateParticipantType($event)"
+                              (civilianDataOutput)="updateCivilianData($event)"
+                              (companyDataOutput)="updateCompanyData($event)"></rik-participant-form>
+      </div>
+      <div fxLayoutAlign="start center"
+           fxLayoutGap="15px">
+        <button mat-raised-button
+                routerLink="/">
+          Tagasi
+        </button>
+        <button mat-raised-button
+                (click)="createParticipant()"
+                [disabled]="isFormValid"
+                color="primary">
+          Salvesta
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
